@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import { OpenAI } from 'openai';
+const useOpenAI = process.env.USE_OPENAI === 'true';
+const env = process.env.NODE_ENV;
 
 const router = express.Router();
 
@@ -12,6 +14,13 @@ router.post('/chat', async (req: Request, res: Response) => {
 
   if (!userMessage) {
     return res.status(400).json({ error: 'Message is required' });
+  }
+
+    // DEV MODE: return mock message
+  if (!useOpenAI || env === 'development') {
+    return res.json({
+      reply: `🧪 [Mock Reply] You said: "${userMessage}" — Klopp believes in you!`,
+    });
   }
 
   try {

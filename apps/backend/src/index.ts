@@ -1,5 +1,8 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: __dirname + '/../.env' });
+import dotenvFlow from 'dotenv-flow';
+dotenvFlow.config();
+
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
 
 import express from 'express';
 import cors from 'cors';

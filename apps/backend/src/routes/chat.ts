@@ -3,9 +3,6 @@ import { OpenAI } from 'openai';
 
 const router = express.Router();
 
-console.log('process.env', process.env)
-console.log('process.env.OPENAI_API_KEY', process.env.OPENAI_API_KEY)
-
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -19,7 +16,7 @@ router.post('/chat', async (req: Request, res: Response) => {
 
   try {
     const chatCompletion = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'system',
